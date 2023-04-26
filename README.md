@@ -8,6 +8,7 @@ Author Details
 •	Student ID: 113531532
 
 # Demo Video
+![Out](https://user-images.githubusercontent.com/113566461/234468822-1671c715-154b-4d4d-bc18-db27ce243b16.gif)
 
 # Getting Started
 Below are the starting steps which needs to be done before starting the project:
@@ -15,7 +16,7 @@ Below are the starting steps which needs to be done before starting the project:
 ```
 ssh -i [path-to-private-key] [username]@[instance-external-ip]
 ```
-* Create a tree structure as shown below in VM instance:
+* Create a tree structure with all the required files. 
 * We need to have python installed in the instance. If not, install it using below command:
 ```
 sudo apt-get install python3
