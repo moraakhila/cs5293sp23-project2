@@ -67,48 +67,40 @@ pipenv run python project2.py --N 5 --ingredient paprika --ingredient banana --i
 pipenv run python -m pytest -v
 ```
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+## Functions
+There is one file named project2.py which consists of all the logic to predict the cusine:
+* project2.py: ‘argparse’ module is used to parse command line arguments ‘--N’ and ‘--ingredient’ with values. If any of the arguments is none, then an error message will be printed asking user to enter correct input. If both the arguments are not none, then it calls main(args) function.
+* main(args):
+   * This function takes arguments as parameter. The arguments are n(top closest meals) and ingredients to use for predicting. This function calls all the other functions one after the other. 
+* data()
+   * The json file(Yummly.json) located in the given url is converted into pandas dataframe. Based on the ‘id’ column, duplicate rows were deleted. Then, for the purpose of simplicity, all the ingredients were converted into lower case. Finally a list of unique ingredients were taken removing English stopwords and this function returns dataframe and list of ingredients.
+* vectorize()
+   * This function vectorizes dataframe based on ingredients. It takes three parameters (dataframe, ingredients and user_ing). It uses TfidfVectorizer with vocabulary ingredients and also sets binary parameter to ‘True’. It creates a binary vector for each cuisine representing presence or absence of an ingredient. Vectorized list is converted into dataframe and it is returned by the function.
+* knn()
+   * This function performs K-nearest neighbor classification on the input dataframe and vectorized dataframe. It returns indices of K-nearest neighbors, predicted cuisine label and probability of each cuisine label.
+* display()
+   * This function returns final output in the json format. It chooses top N  closest recipes and builds a dictionary with information on the cuisine, maximum cosine similarity score between input word vector and cuisine vectors, and top N closest recipes. It finally converts dictionary to JSON string and returns it. 
 
-### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
 
-## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
 
-## Authors
 
-Contributors names and contact info
+## Assumptions
+For this project, I have made below assumptions:
+•	All the ingredients in the json were converted into lowercase for simplicity. So while running the project, the ingredients needs to be entered in lowercase.
+•	Assuming that the data is clean only stopwords were removed from the data.
+•	The ingredients while running the project must be subset of json data.
+•	This project can predict maximum of 10 closest id’s.
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+## Bugs
 
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+* The model may not predict with 100 % accuracy.
+* If the passed ingredients were not present in the json data, then it may give wrong results.  
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [Github Readme template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
+* [TfidfVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
+* [JSON](https://towardsdatascience.com/how-to-convert-json-into-a-pandas-dataframe-100b2ae1e0d8)
+* [KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html)
