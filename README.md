@@ -81,9 +81,12 @@ There is one file named project2.py which consists of all the logic to predict t
 * display()
    * This function returns final output in the json format. It chooses top N  closest recipes and builds a dictionary with information on the cuisine, maximum cosine similarity score between input word vector and cuisine vectors, and top N closest recipes. It finally converts dictionary to JSON string and returns it. 
 
-
-
-
+## Test Cases
+The following are the test cases for all the functions:
+* test_data –This function is used to test data() function.
+* test_vectorize- This function is used to test vectorize() function.
+* test_knn- This function is used to test knn() function.
+* test_display- This function is used to test display() function. 
 
 
 ## Assumptions
