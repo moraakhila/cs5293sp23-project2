@@ -3,9 +3,9 @@
 In this project, the master list of all possible dishes, their ingredients, an identifier, and the cuisine for thousands of different dishes were given. If the foods were clustered by their ingredients, it can help restaurant change foods but keep ingredients constant. A display of clustered ingredients were presented and train a classifier to predict the cuisine type of new food. The data set used for this project is yummly.com(yummly.json). 
 
 Author Details
-•	Name: Akhila Mora
-•	Email: akhila.mora@ou.edu
-•	Student ID: 113531532
+* Name: Akhila Mora
+*	Email: akhila.mora@ou.edu
+*	Student ID: 113531532
 
 # Demo Video
 ![Out](https://user-images.githubusercontent.com/113566461/234468822-1671c715-154b-4d4d-bc18-db27ce243b16.gif)
@@ -62,7 +62,7 @@ pipenv shell
 pipenv run python project2.py --N 5 --ingredient paprika --ingredient banana --ingredient "rice krispies" 
 ```
 * By running the program using above command, it uses the ingredients passed from command line and gives a cuisine type. The output is in json format and below is the sample output:
-![image](https://user-images.githubusercontent.com/113566461/234466349-4f980d9c-fcbe-442e-b2d1-2cbbf59e917f.png)
+* ![image](https://user-images.githubusercontent.com/113566461/234466349-4f980d9c-fcbe-442e-b2d1-2cbbf59e917f.png)
 
 * pytests are used to check if the code passes all the test cases. Run pytests using below command:
 ```
