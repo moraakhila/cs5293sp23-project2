@@ -16,7 +16,8 @@ Below are the starting steps which needs to be done before starting the project:
 ```
 ssh -i [path-to-private-key] [username]@[instance-external-ip]
 ```
-* Create a tree structure with all the required files. 
+* Create a tree structure as shown below in VM instance:
+* ![image](https://user-images.githubusercontent.com/113566461/234470186-609bfaf8-e8f3-4761-bcd7-9187dffe1048.png)
 * We need to have python installed in the instance. If not, install it using below command:
 ```
 sudo apt-get install python3
@@ -90,7 +91,6 @@ The following are the test cases for all the functions:
 * test_knn- This function is used to test knn() function. It checks if the knn is returning output or not. 
 * test_display- This function is used to test display() function. It checks if the final dataframe is none or not.
 
-
 ## Assumptions
 For this project, I have made below assumptions:
 •	All the ingredients in the json were converted into lowercase for simplicity. So while running the project, the ingredients needs to be entered in lowercase.
@@ -99,12 +99,10 @@ For this project, I have made below assumptions:
 •	This project can predict maximum of 10 closest id’s.
 
 ## Bugs
-
 * The model may not predict with 100 % accuracy.
 * If the passed ingredients were not present in the json data, then it may give wrong results.  
 
 ## Acknowledgments
-
 * [Github Readme template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
 * [TfidfVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
 * [JSON](https://towardsdatascience.com/how-to-convert-json-into-a-pandas-dataframe-100b2ae1e0d8)
