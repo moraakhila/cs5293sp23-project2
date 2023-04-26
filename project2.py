@@ -16,7 +16,7 @@ def main(args):
 	df, ing = data()
 	df2 = vectorize(df, ing, ingredients)
 	mid, cuisine_predict, cuisine_proba = knn(df, df2)
-	d = Display(mid, cuisine_predict, cuisine_proba, df2.iloc[-1].tolist(), df2.values.tolist(), df, n)
+	d = display(mid, cuisine_predict, cuisine_proba, df2.iloc[-1].tolist(), df2.values.tolist(), df, int(n))
 
 
 def data():
@@ -52,7 +52,7 @@ def vectorize(df, ing, ingredients):
     return df2
 
 def knn(dataframe,df2):
-    knn = KNeighborsClassifier()
+    knn = KNeighborsClassifier(n_neighbors=10)
     df3 = df2.drop(df2.index[-1])
     knn_class = knn.fit(df3,dataframe['cuisine'])
     test=np.array(df2.iloc[-1].tolist()).reshape(1,-1)
@@ -62,23 +62,22 @@ def knn(dataframe,df2):
     dist,mid = knn_class.kneighbors(test)
     return mid, cuisine_predict, cuisine_proba
 
-
-def Display(m_id, single_cuisine, cuisine, w, vector, data, N):
-	id_list = data['id'].tolist()
-	closest_id = [id_list[i] for i in m_id[0]]
-	closest_vect = [vector[i] for i in m_id[0]]
-	eyu = []
-	for v in closest_vect:
-		id_score = cosine_similarity([w], [v])[0][0]
-		eyu.append(round(id_score, 2))
-	closest_dict = [{'id': id_, 'score': float(score)} for id_, score in zip([int(id_) for id_ in closest_id][:N], eyu)]
-
-	dicti = {"cuisine": single_cuisine[0], "score": max(list(cuisine)), "closest": closest_dict}
-	dicti['score'] = max(dicti['score'].tolist())
-
-	d = json.dumps(dicti, indent=4)
-	print(d)
-	return d
+def display(c_id, one_cuisine, cuisine, u_ing_list, v_list, df, N):
+    id_list = df['id'].tolist()
+    close_id = [id_list[i] for i in c_id[0]]
+    close_vect = [v_list[i] for i in c_id[0]]
+    l = []
+    for v in close_vect:
+        id_score = cosine_similarity([u_ing_list], [v])[0][0]
+        l.append(round(id_score, 2))
+    close_dict = [{'id':id_, 'score': float(score)} for id_, score in zip(close_id,l)]
+    close_dict = sorted(close_dict, key = lambda x:x['score'], reverse = True)
+    close_dict = close_dict[:N]
+    d = {"cuisine": one_cuisine[0], "score": max(list(cuisine)), "closest": close_dict}
+    d['score'] = max(d['score'].tolist())
+    res = json.dumps(d, indent=4)
+    print(res)
+    return res
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
