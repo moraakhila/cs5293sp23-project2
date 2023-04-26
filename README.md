@@ -22,6 +22,7 @@ ssh -i [path-to-private-key] [username]@[instance-external-ip]
 sudo apt-get install python3
 ```
 * Json data is obtained from below url: https://oudatalab.com/cs5293sp23/projects/yummly.json
+* For this project, I increased the instance size to 16 GB and it is taking nearly 10 minutes to run this program.
 
 # Packages
 Following are some of the packages used for this project: 
@@ -84,10 +85,10 @@ There is one file named project2.py which consists of all the logic to predict t
 
 ## Test Cases
 The following are the test cases for all the functions:
-* test_data –This function is used to test data() function.
-* test_vectorize- This function is used to test vectorize() function.
-* test_knn- This function is used to test knn() function.
-* test_display- This function is used to test display() function. 
+* test_data– This function is used to test data() function. It checkes if the length of dataframe and ingredients is greater than 0. 
+* test_vectorize- This function is used to test vectorize() function. It checks if the vectorized data is empty or not.
+* test_knn- This function is used to test knn() function. It checks if the knn is returning output or not. 
+* test_display- This function is used to test display() function. It checks if the final dataframe is none or not.
 
 
 ## Assumptions
