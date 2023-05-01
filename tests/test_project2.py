@@ -19,12 +19,12 @@ def test_vectorize():
 def test_knn():
     dataf,ing = project2.data()
     vec_df = project2.vectorize(dataf.head(100),ing,['rice','salt'])
-    res = project2.knn(dataf.head(100),vec_df)
+    res = project2.knn(dataf.head(100),vec_df,3)
     assert res != None
 
 def test_display():
     dataf, ing = project2.data()
     vec_df = project2.vectorize(dataf.head(100), ing, ['rice','salt'])
-    mid, cuisine_predict, cuisine_proba = project2.knn(dataf.head(100), vec_df)
+    mid, cuisine_predict, cuisine_proba = project2.knn(dataf.head(100), vec_df,3)
     d = project2.display(mid, cuisine_predict, cuisine_proba, vec_df.iloc[-1].tolist(), vec_df.values.tolist(), dataf, int(5))
     assert d!=None

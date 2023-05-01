@@ -15,7 +15,7 @@ def main(args):
 	ingredients = args.ingredient
 	df, ing = data()
 	df2 = vectorize(df, ing, ingredients)
-	mid, cuisine_predict, cuisine_proba = knn(df, df2)
+	mid, cuisine_predict, cuisine_proba = knn(df, df2, num_neighbors = int(n))
 	d = display(mid, cuisine_predict, cuisine_proba, df2.iloc[-1].tolist(), df2.values.tolist(), df, int(n))
 
 
@@ -51,8 +51,8 @@ def vectorize(df, ing, ingredients):
     #print(df2.head(100))
     return df2
 
-def knn(dataframe,df2):
-    knn = KNeighborsClassifier(n_neighbors=10)
+def knn(dataframe,df2, num_neighbors=10):
+    knn = KNeighborsClassifier(n_neighbors=num_neighbors)
     df3 = df2.drop(df2.index[-1])
     knn_class = knn.fit(df3,dataframe['cuisine'])
     test=np.array(df2.iloc[-1].tolist()).reshape(1,-1)
